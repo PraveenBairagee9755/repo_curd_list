@@ -212,5 +212,5 @@ func main() {
     if port == "" {
 		port = "8080" // Fallback to 8080 for your local laptop testing
     }
-    log.Fatal(app.Listen(":" + port))
+    log.Fatal(app.Listen("0.0.0.0:" + port))
 }
