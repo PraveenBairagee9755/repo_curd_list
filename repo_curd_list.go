@@ -208,5 +208,9 @@ func main() {
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "Student soft-deleted successfully"})
 	})
 
-	log.Fatal(app.Listen(":8080"))
+	port := os.Getenv("PORT")
+    if port == "" {
+		port = "8080" // Fallback to 8080 for your local laptop testing
+    }
+    log.Fatal(app.Listen(":" + port))
 }
