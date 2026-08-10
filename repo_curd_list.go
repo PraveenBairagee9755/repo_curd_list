@@ -37,8 +37,11 @@ type RenameRepoPayload struct {
 }
 
 func main() {
-	// 2. CONNECT TO DATABASE (Update password for your PostgreSQL setup)
-	dsn := "host=localhost user=postgres password=Pravin@123 dbname=student_repo port=5432 sslmode=disable"
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		// Fallback to your local setup for laptop development testing
+		dsn = "host=localhost user=postgres password=secret dbname=startup_lms port=5432 sslmode=disable"
+	}
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
