@@ -53,6 +53,12 @@ func main() {
 
 	app := fiber.New()
 
+	// Add a simple welcome gate to the root "/" path
+    app.Get("/", func(c *fiber.Ctx) error {
+		return c.Status(fiber.StatusOK).SendString("Welcome to my Praveen Bairagee Production Cloud Management API!")
+    })
+
+
 	// 3. REPOSITORY CRUD ROUTES
 	repoGroup := app.Group("/api/v1/repos")
 
